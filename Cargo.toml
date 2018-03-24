@@ -1,5 +1,5 @@
 [package]
-name = "nine_mens_morris"
+name = "nmm_lib"
 version = "0.1.0"
 authors = ["Ben Brunton <ben.brunton@infinityworks.com>"]
 

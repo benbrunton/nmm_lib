@@ -1,3 +1,4 @@
+#[macro_use]
 extern crate serde_json;
 
 #[macro_use]
@@ -45,8 +46,19 @@ impl Game {
         Ok(Game{
             pieces: pieces,
             turn: v["turn"].as_u64().unwrap() as u8,
-            next_player: Player::One
+            next_player: Self::unwrap_player(v["player_turn"].as_u64().unwrap())
         })
+    }
+
+    pub fn get_json(&self) -> String {
+        let pieces = self.wrap_pieces();
+        let json = json!({
+            "pieces": pieces,
+            "turn": self.turn,
+            "player_turn": Self::wrap_player(self.next_player)
+        });
+        
+        String::from(json.to_string())
     }
 
     pub fn get_pieces(&self) -> Vec<Piece> {
@@ -230,6 +242,15 @@ impl Game {
         }).count() as u8
     }
 
+    fn wrap_pieces(&self) -> Vec<Value> {
+        self.pieces.iter().map(|&piece| {
+            json!({
+                "player": Self::wrap_player(piece.get_player()),
+                "location": piece.get_location().to_str()
+            })
+        }).collect()
+    }
+
     fn get_new_pieces() -> Vec<Piece> {
         vec!(
             piece!(One, Hand),
@@ -267,6 +288,13 @@ impl Game {
             1 => Player::One,
             2 => Player::Two,
             _ => Player::One
+        }
+    }
+
+    fn wrap_player(player: Player) -> u64 {
+        match player {
+            Player::Two => 2,
+            _           => 1
         }
     }
 

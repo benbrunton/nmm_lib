@@ -62,6 +62,39 @@ impl Location {
         }
     }
 
+    pub fn to_str(&self) -> &'static str {
+        use Location::*;
+        match *self {
+            Hand      => "Hand",
+            A7        => "A7",
+            A4        => "A4",
+            A1        => "A1",
+            B6        => "B6",
+            B4        => "B4",
+            B2        => "B2",
+            C5        => "C5",
+            C4        => "C4",
+            C3        => "C3",
+            D7        => "D7",
+            D6        => "D6",
+            D5        => "D5",
+            D3        => "D3",
+            D2        => "D2",
+            D1        => "D1",
+            E5        => "E5",
+            E4        => "E4",
+            E3        => "E3",
+            F6        => "F6",
+            F4        => "F4",
+            F2        => "F2",
+            G7        => "G7",
+            G4        => "G4",
+            G1        => "G1",
+            Captured  => "Captured"
+        }
+
+    }
+
     pub fn get_rows(location: Location) -> Result<Vec<(Location, Location)>, ()> {
         use Location::*;
         match location {

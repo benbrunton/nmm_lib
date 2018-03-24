@@ -164,6 +164,14 @@ fn when_the_game_has_been_won_no_more_moves_can_be_made() {
     assert_eq!(game.submit(invalid_move), false);
 }
 
+#[test]
+fn it_can_export_to_json() {
+    let game = Game::load(get_json()).unwrap();
+
+    let robot_json = get_json().replace(" ", "").replace("\n", "");
+    assert_eq!(game.get_json(), robot_json);
+}
+
 // ------------------------------------------------------------------------------------------------
 
 fn assert_piece_exists(pieces: &Vec<Piece>, player: Player, location: Location) {
@@ -181,27 +189,27 @@ fn assert_piece_doesnt_exist(pieces: &Vec<Piece>, player: Player, location: Loca
 fn get_json() -> &'static str {
     r#"{
         "pieces": [
-            { "player": 1, "location": "A7"},
-            { "player": 1, "location": "A1"},
-            { "player": 1, "location": "G1"},
-            { "player": 1, "location": "G7"},
-            { "player": 1, "location": "B6"},
-            { "player": 1, "location": "E4"},
-            { "player": 1, "location": "F4"},
-            { "player": 1, "location": "F2"},
-            { "player": 1, "location": "C5"},
-            { "player": 2, "location": "F6"},
-            { "player": 2, "location": "B4"},
-            { "player": 2, "location": "D7"},
-            { "player": 2, "location": "D1"},
-            { "player": 2, "location": "A4"},
-            { "player": 2, "location": "D5"},
-            { "player": 2, "location": "D2"},
-            { "player": 2, "location": "D6"},
-            { "player": 2, "location": "E3"}
+            { "location": "A7", "player": 1 },
+            { "location": "A1", "player": 1 },
+            { "location": "G1", "player": 1 },
+            { "location": "G7", "player": 1 },
+            { "location": "B6", "player": 1 },
+            { "location": "E4", "player": 1 },
+            { "location": "F4", "player": 1 },
+            { "location": "F2", "player": 1 },
+            { "location": "C5", "player": 1 },
+            { "location": "F6", "player": 2 },
+            { "location": "B4", "player": 2 },
+            { "location": "D7", "player": 2 },
+            { "location": "D1", "player": 2 },
+            { "location": "A4", "player": 2 },
+            { "location": "D5", "player": 2 },
+            { "location": "D2", "player": 2 },
+            { "location": "D6", "player": 2 },
+            { "location": "E3", "player": 2 }
         ],
-        "turn": 2,
-        "player_turn": 1
+        "player_turn": 1,
+        "turn": 2
     }"#
 }
 

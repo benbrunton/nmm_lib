@@ -5,6 +5,7 @@ authors = ["Ben Brunton <ben.b.brunton@gmail.com>"]
 description = "implementation of nine mens morris"
 readme = "README.md"
 keywords = ["nine", "mens", "morris"]
+license = "MIT"
 
 [badges]
 travis-ci = { repository = "benbrunton/nmm_lib", branch = "master" }

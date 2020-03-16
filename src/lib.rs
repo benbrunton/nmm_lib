@@ -190,8 +190,10 @@ impl Game {
         old_location: Location,
         new_location: Location
     ) -> Vec<Piece> {
+        let mut piece_moved = false;
         self.pieces.iter().map(|&piece| {
-            if piece.get_location() == old_location && piece.get_player() == player {
+            if !piece_moved && piece.get_location() == old_location && piece.get_player() == player {
+                piece_moved = true;
                 Piece::new(player, new_location)
             } else {
                 piece.clone()

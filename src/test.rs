@@ -68,6 +68,18 @@ fn it_increments_the_turn_after_a_valid_move() {
 }
 
 #[test]
+fn it_only_places_one_piece() {
+    let mut game = Game::new();
+    let new_move = game_move!(One, Hand, A7);
+    game.submit(new_move);
+
+    let pieces_on_a7 = game.get_pieces().iter()
+        .filter(|p| p.get_location() == Location::A7)
+        .count();
+    assert_eq!(pieces_on_a7, 1);
+}
+
+#[test]
 fn a_piece_cannot_be_placed_upon_an_existing_position() {
     let mut game = Game::new();
     let new_move = game_move!(One, Hand, A7);

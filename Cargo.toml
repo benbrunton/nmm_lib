@@ -1,6 +1,6 @@
 [package]
 name = "nmm_lib"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Ben Brunton <ben.b.brunton@gmail.com>"]
 description = "implementation of nine mens morris"
 readme = "README.md"
